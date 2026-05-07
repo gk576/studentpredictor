@@ -1,0 +1,28 @@
+venv/
+    __pycache__/
+    db.sqlite3
+    node_modules/
+    .DS_Store
+    ```
+3.  **Commit your work:**
+    
+```bash
+    git add .
+    git commit -m "Initial commit: Full stack app with AI logic"
+    ```
+
+---
+
+## Milestone 8: Dockerizing the App (Part 2)
+
+Docker wraps your app in a "container" so it has everything it needs to run. We need three main files in your root folder (`edupredict_project`).
+
+### 1. `Dockerfile` (for the Backend)
+Create a file named `Dockerfile` (no extension) in the root:
+```dockerfile
+FROM python:3.10
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
