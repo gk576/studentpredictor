@@ -4,3 +4,5 @@ django-cors-headers
 mysqlclient
 scikit-learn
 pandas
+numpy
+djangorestframework-simplejwt
