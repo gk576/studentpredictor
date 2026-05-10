@@ -3,12 +3,7 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 
 function App() {
-  const [user, setUser] = useState(() => {
-    const token = localStorage.getItem('token');
-    const savedUser = localStorage.getItem('user');
-    // Only restore session if BOTH token and user exist
-    return (token && savedUser) ? savedUser : null;
-  });
+  const [user, setUser] = useState(localStorage.getItem('user') || null);
 
   const handleLogin = (username) => {
     localStorage.setItem('user', username);

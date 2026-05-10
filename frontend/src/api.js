@@ -2,12 +2,9 @@ import axios from 'axios';
 
 const BASE = 'http://localhost:8000/api';
 
-const getHeaders = () => {
-  const token = localStorage.getItem('token');
-  return {
-    headers: { Authorization: `Bearer ${token}` }
-  };
-};
+const getHeaders = () => ({
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+});
 
 export const login = (username, password) =>
   axios.post(`${BASE}/auth/login/`, { username, password });

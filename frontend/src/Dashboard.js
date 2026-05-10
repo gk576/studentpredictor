@@ -14,14 +14,7 @@ function Dashboard({ user, onLogout }) {
       const [s, st] = await Promise.all([getStudents(), getStats()]);
       setStudents(s.data);
       setStats(st.data);
-    } catch (err) {
-      if (err.response && err.response.status === 401) {
-        // Only logout if token is actually invalid/expired
-        onLogout();
-      } else {
-        setError('Failed to load data. Please try again.');
-      }
-    }
+    } catch { onLogout(); }
   };
 
   useEffect(() => { load(); }, []);
