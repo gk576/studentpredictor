@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BASE = 'http://localhost:8000/api';
+const BASE = 'http://127.0.0.1:8000/api';
 
 const getHeaders = () => ({
-  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
 });
 
 export const login = (username, password) =>
@@ -24,5 +24,11 @@ export const updateStudent = (id, data) =>
 export const deleteStudent = (id) =>
   axios.delete(`${BASE}/students/${id}/`, getHeaders());
 
+export const getCourses = () =>
+  axios.get(`${BASE}/courses/`, getHeaders());
+
 export const getStats = () =>
   axios.get(`${BASE}/stats/`, getHeaders());
+
+export const predict = (data) =>
+  axios.post(`${BASE}/predict/`, data, getHeaders());

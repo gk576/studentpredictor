@@ -1,8 +1,8 @@
-django
-djangorestframework
-django-cors-headers
-mysqlclient
-scikit-learn
-pandas
-numpy
-djangorestframework-simplejwt
+Django==6.1.3
+djangorestframework==3.18.3
+django-cors-headers==4.9.0
+djangorestframework-simplejwt==5.5.1
+scikit-learn==1.9.1
+pandas==3.1.1
+numpy==2.5.4
+joblib==1.6.0

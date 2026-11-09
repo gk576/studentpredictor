@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { login, register } from './api';
 
 function Login({ onLogin }) {
@@ -21,8 +21,14 @@ function Login({ onLogin }) {
         localStorage.setItem('token', res.data.access);
         onLogin(form.username);
       }
-    } catch {
-      setError('Invalid credentials or username already taken.');
+    } catch (err) {
+      const detail = err.response?.data;
+      if (detail && typeof detail === 'object') {
+        const first = Object.values(detail)[0];
+        setError(Array.isArray(first) ? first[0] : 'Please check the form and try again.');
+      } else {
+        setError('Invalid credentials. Check your username and password.');
+      }
     }
   };
 
@@ -30,7 +36,13 @@ function Login({ onLogin }) {
     <div style={styles.page}>
       <div style={styles.box}>
         <h2 style={styles.title}>EduPredict</h2>
-        <p style={styles.sub}>AI Student Success Predictor</p>
+        <p style={styles.sub}>AI Student Success Predictor · local MVP</p>
+
+        {!isRegister && (
+          <p style={styles.demoHint}>
+            Demo account: <b>demo</b> / <b>demo12345</b>
+          </p>
+        )}
 
         <h3>{isRegister ? 'Create Account' : 'Login'}</h3>
 
@@ -77,6 +89,7 @@ const styles = {
   box: { background:'#fff', padding:40, borderRadius:8, width:320, boxShadow:'0 2px 12px rgba(0,0,0,0.1)', textAlign:'center' },
   title: { margin:0, color:'#2c3e50' },
   sub: { color:'#888', marginBottom:20, fontSize:13 },
+  demoHint: { background:'#eef6ff', color:'#334e8c', padding:'8px 10px', borderRadius:6, fontSize:12, marginBottom:12 },
   input: { width:'100%', padding:10, marginBottom:12, border:'1px solid #ddd', borderRadius:4, boxSizing:'border-box', fontSize:14 },
   btn: { width:'100%', padding:10, background:'#3498db', color:'#fff', border:'none', borderRadius:4, fontSize:15, cursor:'pointer' },
   error: { color:'red', fontSize:13, marginBottom:8 },
