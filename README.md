@@ -1,11 +1,8 @@
 # EduPredict — Student Performance Predictor
 
-A **local-only** MVP web application that predicts whether a student is likely to pass
+A local MVP web application that predicts whether a student is likely to pass
 or fail a course, so that lecturers and personal tutors can prioritise support.
 
-This repository is the portfolio submission for **Assessment Brief 2** (LO3, LO4).
-It runs entirely on one computer — **no Docker, no MySQL server, no cloud services and
-no public hosting are required**.
 
 | | |
 |---|---|
